@@ -2,6 +2,7 @@ from numpy import dot, arccos, clip
 from numpy.linalg import norm
 from list01_functions import Functions
 from random import randint
+import statistics
 
 class List01():
     def __init__(self):
@@ -28,7 +29,7 @@ class List01():
     def task2(self):
         print("-------- task 2 ----------")
         list = Functions.random_function(20)
-        print("min value of", list, "is: ", min(list))
+        print("mean value of", list, "is: ", statistics.mean(list))
         print("max value of ", list, "is: ", max(list))
         return 0
 
