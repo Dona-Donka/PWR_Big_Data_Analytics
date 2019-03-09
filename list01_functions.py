@@ -1,4 +1,5 @@
 import random
+import itertools
 
 class Functions():
     def random_function(len):
@@ -30,3 +31,6 @@ class Functions():
                 elif item.isalpha() == True:
                     letter += 1
         return print("sentence: ", sentence, "\n", "number of letter: ", letter, "\n", "number of digit: ", digit, "\n" )
+    
+    def subset(numbersSet, item):
+        return set(itertools.combinations(numbersSet, item))
