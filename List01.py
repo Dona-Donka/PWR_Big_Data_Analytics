@@ -95,10 +95,11 @@ class List01():
 
     def task8(self):
         print("-------- task 8 ----------")
-        set = [1, 2, 3, 4]
-        subset = []
-        return print(sorted(sum(set, subset)), "\n", type(set), type(subset))
-
+        numbersSet = {'a', 'b', 'c', 'd'}
+        #subset = []
+        #return print(sorted(sum(set, subset)), "\n", type(set), type(subset))
+        for item in range(0, len(numbersSet)):
+           print(Functions.subset(numbersSet, item))
 
     def task9(self, sentence):
         print("-------- task 9 ----------")
