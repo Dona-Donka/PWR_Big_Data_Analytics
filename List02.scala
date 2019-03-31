@@ -53,45 +53,33 @@ object PrimeNumber {
 }
 
 #------------task 2---------------
-package SCALA_programming_and_classification
+package SCALA_programming_and_classification.theGreatestDivisor_ver2
 
 import scala.collection.mutable.ListBuffer
 
-object PascalsTriangle {
-
+object PascalsTriangle2 {
   def main(args: Array[String]): Unit = {
-    println("Hello World!")
 
     var n: Int = 7
+    var k: Int = 0
+
     var list = new ListBuffer[Int]()
 
-    def print_triangle(n: Int): Unit ={
-      for(line <- 0 until n){
-        for( i <- 0 until line){
-          println("dupa" + i + line)
-          println("triang: " + pascals_triangle(line, i))
-          println("\n")
+    for (line <- 1 to n){
+      list.clear()
+        var C: Int = 1
+        for (i <- 1 to line) {
+          k += 1
+          if (k > line -k) { k = line - k}
+          C = C * (line - i) / i
+          list += C
         }
-      }
-    }
 
-    def pascals_triangle(n: Int, k: Int): Unit ={
-      var res : Int = 1
-      if (k > n - k){k == n - k}
-      for (item <- 0 until k){
-        println("pascal funct" + item + k + n)
-        res = res*(n - 1)/(item + 1)
-        list += res
-
-        /* println("res: " + res) */
-      }
-      return res
+      println(list)
 
     }
+    }
 
-    print_triangle(n)
-  }
 }
-
 
 
