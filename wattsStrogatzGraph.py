@@ -32,3 +32,19 @@ for i in edgesToDelete:
 position = nx.circular_layout(ws)
 nx.draw_networkx(ws, position, width=3, edge_color="r", alpha=0.6)
 plt.savefig('PATH')
+
+
+
+
+
+
+# Histogram of deg. distribution P(k)
+plt.hist([ws.degree[x] for x in range(0,N)], bins='auto')
+plt.savefig('PATH')
+
+
+import statistics
+# Distribution of clustering
+print("Watts-Strogatz model: ", nx.clustering(ws))
+clustering = [x for x in nx.clustering(ws).values()]
+print("Average: ", statistics.mean(clustering))
