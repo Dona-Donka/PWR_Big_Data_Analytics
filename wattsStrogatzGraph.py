@@ -48,3 +48,11 @@ import statistics
 print("Watts-Strogatz model: ", nx.clustering(ws))
 clustering = [x for x in nx.clustering(ws).values()]
 print("Average: ", statistics.mean(clustering))
+
+# Distribution of the shortest path
+
+pathLength =  dict(nx.all_pairs_shortest_path_length(ws))
+for node in range(0,N):
+    print("node: ", node, " Shortest paths: ", pathLength[1][node])
+print("Average paths: ", statistics.mean([int(v) for v in pathLength[1].values()]))
+print("Diameter: ", nx.diameter(ws))
