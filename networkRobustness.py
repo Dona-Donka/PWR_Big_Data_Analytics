@@ -31,19 +31,19 @@ def computeComponent(size):
         graph2 = graph.copy()
         graph3 = graph.copy()
 
-        # Removing high-degree nodes,  creating a list of conneted_components lenght (attack)
+        # Remove high-degree nodes,  create a list of conneted_components lenght (attack)
         listDegree = [x[0] for x in sorted(dict(graph.degree()).items(), reverse=True, key=lambda x: x[1])]
         degreeCompMean.append(connectedComponentsList(graph, listDegree))
         
-        # Removing random sample nodes, creating a list of connected_components lenght
+        # Remove random sample nodes, create a list of connected_components lenght
         listRandomNodes = random.sample(graph1.nodes(), len(graph1.nodes()))
         randomCompMean.append(connectedComponentsList(graph1, listRandomNodes))
 
-        # Removing of high closeness_centrality nodes, creating a list of connected_components lenght
+        # Remove high closeness_centrality nodes, create a list of connected_components lenght
         listClosenessCentrality = [x[0] for x in sorted(dict(nx.closeness_centrality(graph)).items(), reverse=True, key=lambda x: x[1])]
         closenessCompMean.append(connectedComponentsList(graph2, listClosenessCentrality))
 
-        # Removing of high betweeness_centrality nodes, creating a list of connected_components lenght
+        # Remove high betweeness_centrality nodes, create a list of connected_components lenght
         listBetweennessCentrality = [x[0] for x in sorted(dict(nx.betweenness_centrality(graph)).items(), reverse=True, key=lambda x: x[1])]
         betweennessCompMean.append(connectedComponentsList(graph3, listBetweennessCentrality))
 
