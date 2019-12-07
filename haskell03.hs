@@ -31,3 +31,38 @@ multByScalar :: (Num a) => Vector3D a -> a -> Vector3D a
 
 -- main = print $ ((Vector3D 1 1 1) `addicion`  (Vector3D 2 2 2) )
 -- main = print $ ((Vector3D 1 1 1) `multByScalar` 4)
+
+-----------------------------------------------------------------------------------------------
+
+import Data.List (maximum)
+import Data.Tree
+{-# LANGUAGE DeriveFoldable #-}
+
+data Tree a = Leaf a | Node (Tree a) a (Tree a) deriving(Show)
+
+--Implementfoldrthat starts with the right-most branch.
+foldTreer :: (a -> b -> b) -> b -> Tree a -> b
+foldTreer f z (Leaf a)  = z
+foldTreer f z (Node right a left) =
+    f a (foldTreer f (foldTreer f z left) right)
+
+-- Implement functions that count numbers of roots and leafs.
+counter(Leaf a) = 1
+counter(Node left a right) = 1 + counter left + counter right
+
+-- Implement a function that determines whether a given x is an element of a given tree.
+
+-- Implement a function that determines the height of a given tree, i.e. the length of thelongest branch.
+height :: Tree a -> Int
+height (Node a val []) =1
+height (Node a val xs) = 1 + maximum (map height xs)
+
+myTree :: Tree a
+myTree = root  
+	where root = 0 [n1, n4]
+		n1 = 1 [n2, n3]
+	 	n2 = 2 []
+	 	n3 = 3 []
+	 	n4 = 4 []}
+
+main = print $ heigh someTree 
