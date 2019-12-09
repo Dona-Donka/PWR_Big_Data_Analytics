@@ -18,9 +18,15 @@ prime n = if f n > 0 then False else True
      where f n = foldl (\acc x -> if n `mod` x == 0 then acc + 1 else acc) 0 [2..n-1]
 main = print $ (fun (filter (prime)[1,2,3,4,5,6,7,8,9,10]))
 
---list 02 Ex04
+--list 02 Ex04 ver 1.0
 -- Implement a function that for a given natural number n calculates the approximation of e
 list n  = [1 .. n]
 factorial n = foldl (*) 1 [1..n]
 approximation = foldl(\x y -> x+(1/(factorial y))) 1
 main = print $ (approximation (list 20000))
+
+--list 02 Ex04 ver 2.0 (turbo)
+list n  = [1 .. n] 
+approximation_v2 = foldl (\(x,y) item -> (x*item, (y+(1/(x*item))))) (1,1) 
+main = print $ (snd $ (approximation_v2 (list 10000)))
+
