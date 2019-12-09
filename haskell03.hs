@@ -44,13 +44,24 @@ data Tree a = Leaf a | Node (Tree a) a (Tree a) deriving(Show)
 foldTreer :: (a -> b -> b) -> b -> Tree a -> b
 foldTreer f z (Leaf a)  = z
 foldTreer f z (Node right a left) =
-    f a (foldTreer f (foldTreer f z left) right)
+    f a (foldTreer f (foldTreer f z left) right
+    
 
 -- Implement functions that count numbers of roots and leafs.
 counter(Leaf a) = 1
 counter(Node left a right) = 1 + counter left + counter right
 
+
 -- Implement a function that determines whether a given x is an element of a given tree.
+treeToList :: (Ord a) => Tree a -> [a]   
+treeToList EmptyTree = []         
+treeToList (Node root left right) = treeToList left ++ [root] ++ treeToList right
+
+isMember n [] = False
+isMember n (x:xs)
+    | n == x = True
+    | otherwise = isMember n xs
+
 
 -- Implement a function that determines the height of a given tree, i.e. the length of thelongest branch.
 height :: Tree a -> Int
