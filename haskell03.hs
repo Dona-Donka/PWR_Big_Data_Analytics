@@ -76,4 +76,30 @@ myTree = root
 	 	n3 = 3 []
 	 	n4 = 4 []}
 
-main = print $ heigh someTree 
+main = print $ "hello"
+
+-------------------------------------------------------------------------------------------------
+{-# LANGUAGE DeriveFoldable #-}
+
+module Tree (Tree) where
+data Tree a 
+    = Empty
+    | Node (Tree a) a (Tree a)
+    | Leaf a
+    deriving Foldable
+
+treeMap :: (a -> b) -> Tree a -> Tree b
+treeMap _ Empty = Empty
+treeMap f (Leaf a) = Leaf (f a)
+treeMAp f (Node leftPart a rightPart) = Node (treeMap f leftPart) (f a) (treeMap f rightPart)
+
+instance Functor Tree where
+    fmap = treeMap
+--foldr f z Empty = z
+--foldr f z (Node z leftPart rightPart) = f x (foldr f (foldr f z rightPart) lelftPart)
+instance Foldable Tree where
+    foldr f acc Leaf = acc
+    foldr f acc (Node leftPart a rightPart) = foldr f (f a (foldr f acc rirghPart)) leftPart
+
+main = print $ "hello"
+
