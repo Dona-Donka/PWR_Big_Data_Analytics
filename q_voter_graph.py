@@ -5,20 +5,24 @@ import random, numpy
 
 
 # initialize a q-voter graph with N nodes, probability p, q votes and concentrations c (0)
-def initQVoterGraph(N,p,q,c):
+def initQVoterGraph(N,p,c):
     graph = nx.erdos_renyi_graph(N, p)
-    zeroVotes = random.sample(range(N), int(c*N))
     for i in range(N):
-        if i in zeroVotes:
-            graph.add_node(i, vote =  0)
+        randomNumber = random.randint(0, 100) * 0.01
+        if randomNumber <= c:
+            graph.add_node(i, vote=1)
         else:
-            graph.add_node(i, vote =  random.randint(1,q-1))
+            graph.add_node(i, vote=0)
     return graph
 
-# take a neighbour nodes, assign a random neighbor attribute, iterate by all nodes
-def monteCarloStep(graph):
-    for node in graph.nodes():
-        graph.node[node]["vote"] = graph.node[random.choice([x[1] for x in graph.edges(node)])]["vote"]
+def monteCarloStep(graph, q):
+    for myNode in graph.nodes():
+        voteList = []
+        for n in range(q):
+            voteList.append(graph.node[random.choice([x[1] for x in graph.edges(myNode)])]["vote"])
+        print(voteList)
+        if (len(set(voteList))==1):
+            graph.node[myNode]["vote"] = int(voteList[0])
     return graph
 
 # get concentration c(0)
