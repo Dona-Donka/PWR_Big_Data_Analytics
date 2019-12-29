@@ -43,7 +43,7 @@ data Tree a = Leaf a | Node (Tree a) a (Tree a) deriving(Show)
 --Implementfoldrthat starts with the right-most branch.
 foldTreer :: (a -> b -> b) -> b -> Tree a -> b
 foldTreer f z (Leaf a)  = z
-foldTreer f z (Node right a left) =
+foldTreer f z (Node left a right) =
     f a (foldTreer f (foldTreer f z left) right
     
 
