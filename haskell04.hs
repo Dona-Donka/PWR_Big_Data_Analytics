@@ -48,6 +48,13 @@ moveKnight (c,r) = filter onBoard
         ,(c+1,r-2),(c+1,r+2),(c-1,r-2),(c-1,r+2)  
         ]  
         where onBoard (c,r) = c `elem` [1..8] && r `elem` [1..8]  
-
-
 --main = (print (moveKnight (4,5))) 
+
+-- its possible positions on 3 moves:
+in3 :: KnightPos -> [KnightPos]
+in3 start = return start >>= moveKnight >>=moveKnight >>=moveKnight
+
+-- its possible positions on n moves
+inn :: KnightPos -> [KnightPos] 
+inn start = concat[ inn start >>= moveKnight | i <- [1..6]]
+main = print (inn (3,4))
