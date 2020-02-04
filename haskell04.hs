@@ -1,3 +1,6 @@
+import Data.Set
+
+
 -- Maybe as a Monad 
 funct::Int -> Maybe Int
 funct 0 = Nothing
@@ -14,6 +17,7 @@ f x = [x+1, x+2] -- \ x -> [x-1, x+2]
 g x =[2*x, 3*x]
 main = print ([1,1,1] >>= f) --[2,3,2,3,2,3]
 
+-------------------------------------------------------------------------------------------------------------------------------
 
 -- Ex4.02 Simplify do x <- mx; f x. What should be the type off?
 -- x <- action runs the IO action, gets its result, and binds it to x
@@ -22,9 +26,12 @@ do
 	f x
 -- equals:  y >>= \x -> f x  
 
+-------------------------------------------------------------------------------------------------------------------------------
+
 -- Ex4.03 Explain how thedonotation makes the list comprehension redundant?
 -- I do not know
 
+-------------------------------------------------------------------------------------------------------------------------------
 
 -- Task4.1 Implement a model of ”walking a narrow path”. A ”wanderer” starts at a positionpos(an integer satisfying−3<pos<3) and moves forward and left or forward orforward and right (which changes the wanderer’s position by -1, 0, 1 respectively). Ifthe wanderer wanders too much to one of the sides of the path, he dies (|pos|>2).Implement
 -- 4.1.1 a functionmove :: Int -> Int -> Maybe Intthat takes a move and a position andreturns the new position (if the wanderer lives) orNothing(if he dies). Use>>=tomake a couple of moves
@@ -42,6 +49,13 @@ main = print((move 1 0) >>= (\x -> move 1 x))
 
 -- 4.4.2 a functionmovelist :: [Int] -> Int -> Maybe Intthat does almost the samething, however it takes a list of moves instead of one move.
 
+move_list :: [Int] -> Int -> Maybe Int
+move_list list pos = Prelude.foldr(\x mov -> mov >>= deadOrAlive x) (Just 0) list
+
+main = print((move_list [1,0,-1,1,0,1] 0))
+-- Just 2
+
+-----------------------------------------------------------------------------------------------------------------------------------------
 
 -- Task 4.2 Implement a function that returns a list of all the possible outcomes of two (d6and d20) dices roll. Use do notation or >>=.
 -- http://learnyouahaskell.com/a-fistful-of-monads#getting-our-feet-wet-with-maybe
@@ -54,7 +68,8 @@ pairList = do
 	i <- [0..6]
  	j <- [0..20
  	return (i,j)
-
+	
+-------------------------------------------------------------------------------------------------------------------------------
 
 --Task 4.3
 type KnightPos = (Int,Int)  
