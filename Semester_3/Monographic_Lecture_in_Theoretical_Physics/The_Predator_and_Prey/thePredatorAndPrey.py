@@ -1,6 +1,7 @@
 # Based on:
 # https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations
 # https://scipy-cookbook.readthedocs.io/items/LoktaVolterraTutorial.html
+
 import numpy as np
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt
@@ -20,7 +21,7 @@ def deriv(y, t, a):
 
 # Initial conditions vector
 y0 = R0, F0
-# Integrate the SIR equations over the time grid, t.
+
 ret = odeint(deriv, y0, t, args=(a,))
 R, F = ret.T
 
